@@ -8,7 +8,7 @@ import { Router, View } from 'react-navi'
 import { HomePage } from '../../pages'
 
 // Components
-import { Header, Footer } from './'
+import { Header, Footer } from '../'
 
 const routes =
   mount({
@@ -17,7 +17,7 @@ const routes =
       //getData: () => api.fetchProducts(),
       view: <HomePage />,
     }),
-    '/products': lazy(() => import('../../pages/Products')),
+    //'/products': lazy(() => import('../../pages/Products')),
   })
 
 const App = _ => (<>
