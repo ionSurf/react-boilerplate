@@ -8,7 +8,7 @@ import { Router, View } from 'react-navi'
 import { HomePage } from '../../pages'
 
 // Components
-import { Header, Footer } from '../../components'
+import { Header, Footer } from './'
 
 const routes =
   mount({
