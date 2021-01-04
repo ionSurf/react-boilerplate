@@ -1,32 +1,26 @@
 import React, { Suspense } from 'react'
 
 // Routing
-import { mount, route, lazy } from 'navi'
+import { mount, route } from 'navi'
 import { Router, View } from 'react-navi'
-
-// Pages
-import { HomePage } from '../../pages'
+import { routes } from '../../config/routes'
 
 // Components
-import { Header, Footer } from '../'
+import { Layout } from '../'
 
-const routes =
-  mount({
-    '/': route({
-      title: "Homepage",
-      //getData: () => api.fetchProducts(),
-      view: <HomePage />,
-    }),
-    //'/products': lazy(() => import('../../pages/Products')),
-  })
+//console.log(routes.reduce((o, key) => ({ ...o, [key.uri]: key}), {}))
+
+const computedRoutes = mount(
+  routes.reduce((o, { uri, id, ...rest } ) => ({ ...o, [uri]: route( {...rest} ) }), {})
+)
 
 const App = _ => (<>
-  <Router routes={routes}>
-    <Suspense fallback={null}>
-      <Header />
-      <View />
-      <Footer />
-    </Suspense>
+  <Router routes={ computedRoutes }>
+    <Layout>
+      <Suspense fallback={null}>
+        <View />
+      </Suspense>
+    </Layout>
   </Router>
 </>)
 
